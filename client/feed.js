@@ -19,26 +19,35 @@ export class Feed extends Component {
   }
   renderFeedStory(story, key) {
     return (
-      <li key={key}>
-        <h5>{story.title}</h5>
-        <a href={story.link}>Read more</a>
-        <p>{story.summary}</p>
-      </li>
+      <a
+        href={story.link}
+        key={key}
+        className="list-group-item list-group-item-action flex-column align-items-start"
+      >
+        <div className="d-flex w-100 justify-content-between">
+          <h5 className="story-title mb-1">{story.title}</h5>
+          <small className="no-wrap">{story.pubdate}</small>
+        </div>
+        <p className="mb-1">{story.summary}</p>
+      </a>
     )
   }
   render() {
     const feedStories = this.state.feedStories
-    console.log(feedStories)
-    if (this.state.feedStories && this.state.feedStories.length > 0) {
+    if (feedStories && feedStories.length > 0) {
       return (
         <div>
-          <h3>{this.state.channel.title}</h3>
-          <ul>{feedStories.map(this.renderFeedStory)}</ul>
+          <header className="d-flex justify-content-start align-items-center">
+            <h4>Channel: &#x2F; &#x2F; {this.state.channel.title}</h4>
+          </header>
+          <section className="list-group">
+            {feedStories.map(this.renderFeedStory)}
+          </section>
         </div>
       )
     }
     else {
-      return <h3>Waiting......</h3>
+      return <h4>Waiting......</h4>
     }
   }
 }

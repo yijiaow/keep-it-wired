@@ -49,6 +49,9 @@ async function parseXML(url) {
       link: singleItem.link,
       creator: singleItem.creator,
       pubdate: singleItem.pubdate
+        .split(' ')
+        .slice(0, 3)
+        .join(' ')
     }
     stories.push(story)
   })

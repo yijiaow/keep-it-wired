@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description":
     "A Chrome extension for software developers to read and annotate technial articles",
-  "main": "./chrome-extension/index.js",
+  "main": "server/index.js",
   "scripts": {
     "start": "node .",
     "bundle":
-      "browserify -t babelify ./client/feed.js -o chrome-extension/bundle.js",
+      "browserify -t babelify client/feed.js -o chrome-extension/bundle.js",
     "watch:client":
       "watchify -vd -t babelify client/feed.js -o chrome-extension/bundle.js",
     "watch:server": "nodemon server/index.js",

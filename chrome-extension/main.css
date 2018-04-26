@@ -1,0 +1,51 @@
+* {
+  color: lightgray;
+  font-family: 'Abel', sans-serif;
+}
+
+body {
+  width: 540px;
+  height: 800px;
+  background-color: #212121;
+}
+
+header {
+  height: 50px;
+  padding-left: 20px;
+  background-color: #1de9b6;
+  color: black;
+  font-family: 'Gugi', cursive;
+}
+
+header > h4 {
+  margin: 0;
+}
+
+p {
+  font-size: 1.1rem;
+}
+
+.list-group-item {
+  background-color: transparent;
+  border-color: gray;
+}
+
+.list-group-item-action:active,
+.list-group-item-action:hover {
+  background-color: #00251a;
+}
+
+.list-group-item-action:focus {
+  color: black;
+  background-color: #004d40;
+}
+
+.story-title {
+  color: white;
+  font-size: 1.4rem;
+  margin-right: 0.4rem;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
