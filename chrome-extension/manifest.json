@@ -1,0 +1,13 @@
+{
+  "manifest_version": 2,
+
+  "name": "Keep It Wired",
+  "description": "",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "rss.png",
+    "default_popup": "index.html"
+  },
+  "permissions": ["activeTab"]
+}
