@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import { ErrorBoundary } from './error'
 
 export class Feed extends Component {
   constructor() {
@@ -9,12 +10,14 @@ export class Feed extends Component {
   }
   componentDidMount() {
     fetch('http://127.0.0.1:3000/feed')
-      .then(res => res.json())
+      .then(res => {
+        if (res.status === 500) {
+          this.setState({ error: res.statusText })
+        }
+        return res.json()
+      })
       .then(data => {
         this.setState({ channel: data.channel, feedStories: data.stories })
-      })
-      .catch(err => {
-        console.error(err)
       })
   }
   renderFeedStory(story, key) {
@@ -33,15 +36,17 @@ export class Feed extends Component {
     )
   }
   render() {
-    const feedStories = this.state.feedStories
-    if (feedStories && feedStories.length > 0) {
+    if (this.state.error) {
+      throw new Error(this.state.error)
+    }
+    else if (this.state.feedStories && this.state.feedStories.length > 0) {
       return (
         <div>
           <header className="d-flex justify-content-start align-items-center">
             <h4>Channel: &#x2F; &#x2F; {this.state.channel.title}</h4>
           </header>
           <section className="list-group">
-            {feedStories.map(this.renderFeedStory)}
+            {this.state.feedStories.map(this.renderFeedStory)}
           </section>
         </div>
       )
@@ -52,4 +57,14 @@ export class Feed extends Component {
   }
 }
 
-ReactDOM.render(<Feed />, document.querySelector('#app'))
+const App = () => {
+  return (
+    <div>
+      <ErrorBoundary>
+        <Feed />
+      </ErrorBoundary>
+    </div>
+  )
+}
+
+ReactDOM.render(<App />, document.querySelector('#app'))

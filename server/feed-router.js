@@ -13,7 +13,7 @@ module.exports = function feedRouter() {
     }
     catch (err) {
       console.error(err)
-      process.exit()
+      res.status(500).json({ error: 'Internal Server Error' })
     }
   })
   return router
