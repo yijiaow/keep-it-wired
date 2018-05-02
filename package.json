@@ -7,9 +7,11 @@
   "scripts": {
     "start": "node .",
     "bundle":
-      "browserify -t babelify client/app.js -o chrome-extension/bundle.js",
+      "browserify -t babelify client/app.js -o chrome-extension/js/bundle.js",
     "watch:client":
-      "watchify -vd -t babelify client/app.js -o chrome-extension/bundle.js",
+      "watchify -vd -t babelify client/app.js -o chrome-extension/js/bundle.js",
+    "watch:content_script":
+      "watchify -vd -t babelify client/content_script.js -o chrome-extension/js/content_script_bundle.js",
     "watch:server": "nodemon server/index.js",
     "watch": "npm-run-all --parallel watch:*",
     "lint": "run-p lint:*",
@@ -18,7 +20,7 @@
     "lint:js": "eslint ./**/*.js"
   },
   "nodemonConfig": {
-    "ignore": ["chrome-extension/bundle.js", "client/"]
+    "ignore": ["chrome-extension/js/bundle.js", "client/"]
   },
   "author": "Yijiao Wang",
   "license": "ISC",

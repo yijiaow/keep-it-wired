@@ -12,11 +12,19 @@
     "scopes": ["https://www.googleapis.com/auth/plus.login"]
   },
   "background": {
-    "scripts": ["bundle.js"],
+    "scripts": ["js/bundle.js", "js/background.js"],
     "persistent": false
   },
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "run_at": "document_idle",
+      "css": ["css/bootstrap.min.css"],
+      "js": ["js/content_script_bundle.js"]
+    }
+  ],
   "browser_action": {
-    "default_icon": "icon_16x16.png",
+    "default_icon": "icons/icon_16x16.png",
     "default_popup": "index.html"
   },
   "permissions": ["identity", "activeTab", "*://*/*"]
