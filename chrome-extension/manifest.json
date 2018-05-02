@@ -4,13 +4,20 @@
   "name": "Keep It Wired",
   "description": "",
   "version": "1.0",
+  "key":
+    "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqZye5q8cL6jrP16agKXdhwfzLPsIzqbFsSRq4xf1dqvA2MLLDwk2Iqmfbzo/jnqJrW8EggZY7QpcwyeKI5s3p6Q/XXON8tSL82jFxRmZOtG1pqlXy3oLnBYYA7KLc/7mUBfhcD1+T0K/+OZcwx3hMJu67Xo8o0jDKxrquDCyoFB9BD60DIMIXPGK7eM2/20jFLFp9FxxPdYZEcDAouvfE8v1snzficwvpdlLI/xGAZwIwxU69hXC/sZKaJQJHVipITlhUcrDPX/BhT5UqPpKO+RAnhQeVvgVFvtUaDKz9qbsur/Mofl4cusI49Nix9t+WqNLTx7f1h1INTB22LzBywIDAQAB",
+  "oauth2": {
+    "client_id":
+      "826724845744-n01d8o97hupf5ncgco23g3acpdiaok5r.apps.googleusercontent.com",
+    "scopes": ["https://www.googleapis.com/auth/plus.login"]
+  },
   "background": {
     "scripts": ["bundle.js"],
     "persistent": false
   },
   "browser_action": {
-    "default_icon": "icon.png",
+    "default_icon": "icon_16x16.png",
     "default_popup": "index.html"
   },
-  "permissions": ["activeTab", "*://*/*"]
+  "permissions": ["identity", "activeTab", "*://*/*"]
 }

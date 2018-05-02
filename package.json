@@ -7,9 +7,9 @@
   "scripts": {
     "start": "node .",
     "bundle":
-      "browserify -t babelify client/feed.js -o chrome-extension/bundle.js",
+      "browserify -t babelify client/app.js -o chrome-extension/bundle.js",
     "watch:client":
-      "watchify -vd -t babelify client/feed.js -o chrome-extension/bundle.js",
+      "watchify -vd -t babelify client/app.js -o chrome-extension/bundle.js",
     "watch:server": "nodemon server/index.js",
     "watch": "npm-run-all --parallel watch:*",
     "lint": "run-p lint:*",
