@@ -9,7 +9,7 @@
   "oauth2": {
     "client_id":
       "826724845744-n01d8o97hupf5ncgco23g3acpdiaok5r.apps.googleusercontent.com",
-    "scopes": ["https://www.googleapis.com/oauth/plus.login"]
+    "scopes": ["https://www.googleapis.com/auth/plus.login"]
   },
   "background": {
     "scripts": ["bundle.js"],
