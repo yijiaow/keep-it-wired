@@ -1,0 +1,85 @@
+* {
+  color: lightgray;
+  font-family: 'Abel', sans-serif;
+}
+
+body {
+  width: 480px;
+  height: 800px;
+  background-color: #212121;
+}
+
+header {
+  height: 50px;
+  padding-left: 20px;
+  background-color: #1de9b6;
+  color: black;
+  font-family: 'Gugi', cursive;
+}
+
+header > h4 {
+  margin: 0;
+}
+
+.list-group-item {
+  background-color: transparent;
+  border-color: gray;
+}
+
+.list-group-item-action:active,
+.list-group-item-action:hover {
+  background-color: #00251a;
+}
+
+.list-group-item-action:focus {
+  color: black;
+  background-color: #004d40;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.btn-inline {
+  background-color: transparent;
+  color: #1de9b6;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.btn-block-primary {
+  padding: 8px 16px;
+  border: 2px solid #1de96b;
+  border-radius: 8px;
+  box-shadow: 0 0 20px 1px #1de96b;
+  background-color: #00251a;
+  font-size: 1.2rem;
+}
+
+.landing-view {
+  height: 280px;
+  margin-top: 50px;
+}
+
+.landing-view > h3 {
+  text-shadow: 3px 3px 10px black;
+}
+
+.landing-view > img {
+  width: 128px;
+  height: 128px;
+}
+
+.user-account-bar {
+  padding-right: 10px;
+}
+
+.user-greeting {
+  margin: 0 15px;
+}
+
+.story-title {
+  color: white;
+  font-size: 1.2rem;
+  margin-right: 0.4rem;
+}
