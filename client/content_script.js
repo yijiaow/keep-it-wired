@@ -9,15 +9,6 @@ const $injectApp = document.createElement('div')
 $injectApp.id = 'root'
 if ($viewport) $viewport.prepend($injectApp)
 
-const styles = {
-  root: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    zIndex: 1000,
-    backgroundColor: 'transparent'
-  }
-}
 export class InjectApp extends Component {
   constructor() {
     super()
@@ -36,34 +27,47 @@ export class InjectApp extends Component {
   }
   handleNoteSubmit(event) {
     event.preventDefault()
-    const formData = new FormData(event.target)
+    const $form = event.target
+    const formData = new FormData($form)
     const data = Object.create(Object)
     for (let [key, value] of formData.entries()) {
       data[key] = value
     }
-    data['author_id'] = this.state.currentUser.userId
+    const noteData = Object.assign(data, {
+      author_id: this.state.currentUser.userId,
+      article_link: '#',
+      article_id: '#'
+    })
     fetch('http://127.0.0.1:3000/note/new', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(data)
+      body: JSON.stringify(noteData)
     })
       .then(res => res.json())
       .catch(err => console.error(err))
+    $form.reset()
+    this.setState({ noteFormOpen: false })
   }
   openNoteForm() {
     this.setState({ noteFormOpen: true })
   }
   renderNoteForm() {
     return (
-      <form onSubmit={this.handleNoteSubmit}>
+      <form
+        className="d-flex flex-column justify-content-between align-items-center"
+        onSubmit={this.handleNoteSubmit}
+      >
         <input
           className="form-control"
           name="title"
           type="text"
           placeholder="Title"
         />
+        <h5 className="form-text align-self-start">
+          By: {this.state.currentUser.displayName}
+        </h5>
         <textarea className="form-control form-control-sm" name="content" />
-        <button type="submit" className="btn btn-primary mb-2">
+        <button type="submit" className="btn btn-secondary">
           Save
         </button>
       </form>
@@ -71,9 +75,9 @@ export class InjectApp extends Component {
   }
   render() {
     return (
-      <div className="content-layer" style={styles.root}>
-        <button className="btn btn-primary" onClick={this.openNoteForm}>
-          New note
+      <div className="content-layer">
+        <button className="btn" onClick={this.openNoteForm}>
+          Take note
         </button>
         {this.state.noteFormOpen && this.renderNoteForm()}
       </div>

@@ -41,19 +41,6 @@ function xhrWithAuth(interactive, callback) {
     }
   }
 }
-chrome.runtime.onMessage.addListener((req, sender, res) => {
-  console.log('reporting for duty.')
-  if (req.get === 'user') {
-    console.log('sir, yes sir!')
-    res({ do: 'some PT' })
-    // if (this.state.loginStatus === USER_LOADED) {
-    //   res({ currentUser: this.state.user })
-    // }
-    // else {
-    //   res({ error: 'User is not logged in.' })
-    // }
-  }
-})
 
 class App extends Component {
   constructor(props) {

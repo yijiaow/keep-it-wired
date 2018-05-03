@@ -2,7 +2,7 @@ const { Router } = require('express')
 const request = require('request')
 const { Parser } = require('xml2js')
 
-const TEST_URL = 'https://www.wired.com/feed/category/science/latest/rss'
+const TEST_URL = 'https://medium.freecodecamp.org/feed'
 
 module.exports = function feedRouter() {
   const router = new Router()
