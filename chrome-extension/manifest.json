@@ -15,13 +15,6 @@
     "scripts": ["js/background.js"],
     "persistent": false
   },
-  "content_scripts": [
-    {
-      "matches": ["*://*/*"],
-      "run_at": "document_idle",
-      "css": ["css/bootstrap.min.css"]
-    }
-  ],
   "browser_action": {
     "default_icon": "icons/icon_16x16.png",
     "default_popup": "popup.html"
