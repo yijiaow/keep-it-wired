@@ -41,6 +41,19 @@ function xhrWithAuth(interactive, callback) {
     }
   }
 }
+chrome.runtime.onMessage.addListener((req, sender, res) => {
+  console.log('reporting for duty.')
+  if (req.get === 'user') {
+    console.log('sir, yes sir!')
+    res({ do: 'some PT' })
+    // if (this.state.loginStatus === USER_LOADED) {
+    //   res({ currentUser: this.state.user })
+    // }
+    // else {
+    //   res({ error: 'User is not logged in.' })
+    // }
+  }
+})
 
 class App extends Component {
   constructor(props) {
@@ -84,7 +97,6 @@ class App extends Component {
       this.setState({ loginStatus: INIT })
     }
   }
-
   handleLogout() {
     chrome.identity.getAuthToken({ interactive: false }, token => {
       if (chrome.runtime.lastError) {
@@ -128,7 +140,7 @@ class App extends Component {
               Log Out
             </button>
           </div>
-          <Feed />
+          <Feed currentUser={this.state.user} />
         </ErrorBoundary>
       )
     }

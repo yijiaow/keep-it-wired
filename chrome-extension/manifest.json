@@ -12,20 +12,19 @@
     "scopes": ["https://www.googleapis.com/auth/plus.login"]
   },
   "background": {
-    "scripts": ["js/bundle.js", "js/background.js"],
+    "scripts": ["js/background.js"],
     "persistent": false
   },
   "content_scripts": [
     {
       "matches": ["*://*/*"],
       "run_at": "document_idle",
-      "css": ["css/bootstrap.min.css"],
-      "js": ["js/content_script_bundle.js"]
+      "css": ["css/bootstrap.min.css"]
     }
   ],
   "browser_action": {
     "default_icon": "icons/icon_16x16.png",
-    "default_popup": "index.html"
+    "default_popup": "popup.html"
   },
-  "permissions": ["identity", "activeTab", "*://*/*"]
+  "permissions": ["identity", "tabs", "activeTab", "*://*/*"]
 }

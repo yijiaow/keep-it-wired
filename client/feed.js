@@ -3,8 +3,8 @@
 import React, { Component } from 'react'
 
 export class Feed extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {}
     this.openFeedStory = this.openFeedStory.bind(this)
     this.renderFeedStory = this.renderFeedStory.bind(this)
@@ -23,7 +23,12 @@ export class Feed extends Component {
   }
   openFeedStory(event) {
     const url = event.currentTarget.dataset.link
-    chrome.tabs.create({ url })
+    chrome.runtime.sendMessage({
+      from: 'popup_script',
+      action: 'createTab',
+      url: url,
+      currentUser: this.props.currentUser
+    })
   }
   renderFeedStory(story, key) {
     return (

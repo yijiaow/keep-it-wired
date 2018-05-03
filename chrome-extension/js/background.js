@@ -1,8 +1,14 @@
 /* global chrome */
 
-chrome.runtime.onMessage.addListener(function (message, sender, callback) {
-  if (message.from === 'content_script_bundle' && message.subject === 'showPageAction') {
-    console.log(sender.tab ? 'from a content script: ' + sender.tab.url : 'from the extension')
-    chrome.pageAction.show(sender.tab.id, callback.)
+let currentUser
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.from === 'popup_script' && message.action === 'createTab') {
+    currentUser = message.currentUser
+    chrome.tabs.create({ url: message.url }, tab => {
+      chrome.tabs.executeScript(tab.id, { file: 'js/content_script_bundle.js' })
+    })
+  }
+  if (message.from === 'content_script' && message.action === 'getUser') {
+    sendResponse(currentUser)
   }
 })
