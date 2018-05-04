@@ -5,6 +5,7 @@ export class Notes extends Component {
     super(props)
     this.state = { active: null }
     this.handleHover = this.handleHover.bind(this)
+    this.handleDeleteNote = this.handleDeleteNote.bind(this)
     this.renderNoteCard = this.renderNoteCard.bind(this)
   }
   componentDidMount() {
@@ -20,14 +21,30 @@ export class Notes extends Component {
   handleHover(event) {
     this.setState({ active: event.currentTarget.dataset.id })
   }
+  handleDeleteNote(event) {
+    const { id, index } = event.currentTarget.closest('.card').dataset
+    const updatedNoteList = this.state.notes
+      .slice(0, index)
+      .concat(this.state.notes.slice(index + 1))
+    fetch(`http://127.0.0.1:3000/note/delete/${id}`, {
+      method: 'DELETE'
+    })
+      .then(this.setState({ notes: updatedNoteList }))
+      .catch(err => {
+        this.setState({ error: err })
+      })
+  }
   renderNoteCard(note, key) {
     const $deleteBtn = note._id === this.state.active && (
-      <button className="btn">Delete</button>
+      <button className="btn" onClick={this.handleDeleteNote}>
+        Delete
+      </button>
     )
     return (
       <div
         className="card"
         key={key}
+        data-index={key}
         data-id={note._id}
         onMouseOver={this.handleHover}
       >

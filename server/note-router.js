@@ -6,7 +6,7 @@ module.exports = function noteRouter() {
   router.get('/', async (req, res) => {
     try {
       const notes = await Note.find({ author_id: req.query.user })
-      res.status(200).send(notes)
+      res.status(200).json(notes)
     }
     catch (err) {
       console.error(err)
@@ -16,11 +16,11 @@ module.exports = function noteRouter() {
   router.post('/new', async (req, res) => {
     try {
       const noteSaved = await Note.create(req.body)
-      res.status(201).send(noteSaved)
+      res.status(201).json(noteSaved)
     }
     catch (err) {
       console.error(err)
-      res.status(500).json({ error: 'Internal Server Error' })
+      res.status(500).send(err)
     }
   })
   router.post('/edit/:id/', async (req, res) => {
@@ -37,8 +37,8 @@ module.exports = function noteRouter() {
   })
   router.delete('/delete/:id', async (req, res) => {
     try {
-      await Note.findByIdAndRemove(req.params.id)
-      res.status(200).send('Note successfully deleted].')
+      const noteDeleted = await Note.findByIdAndRemove(req.params.id)
+      res.status(200).json(noteDeleted)
     }
     catch (err) {
       res.status(500).send(err)
