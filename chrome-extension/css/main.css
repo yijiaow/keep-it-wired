@@ -9,6 +9,10 @@ body {
   background-color: #212121;
 }
 
+#app {
+  height: 100vh;
+}
+
 header {
   height: 50px;
   padding-left: 20px;
@@ -42,7 +46,6 @@ header > h4 {
 
 .btn-inline {
   background-color: transparent;
-  color: #1de9b6;
   font-size: 1rem;
   font-weight: 400;
 }
@@ -82,4 +85,24 @@ header > h4 {
   color: white;
   font-size: 1.2rem;
   margin-right: 0.4rem;
+}
+
+.notes-view {
+  padding: 2vw 3vh;
+  height: 80%;
+}
+
+.card {
+  width: 40vw;
+  height: 42vw;
+  border-radius: 16px;
+  background-color: #003d33;
+}
+
+.card:hover {
+  background-color: #00695c;
+}
+
+.text-highlight {
+  color: #1de9b6;
 }
