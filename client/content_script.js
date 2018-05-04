@@ -54,6 +54,7 @@ export class InjectApp extends Component {
   renderNoteForm() {
     return (
       <form
+        autoComplete="off"
         className="d-flex flex-column justify-content-between align-items-center"
         onSubmit={this.handleNoteSubmit}
       >
@@ -63,11 +64,11 @@ export class InjectApp extends Component {
           type="text"
           placeholder="Title"
         />
-        <h5 className="form-text align-self-start">
-          By: {this.state.currentUser.displayName}
-        </h5>
+        <label className="align-self-start">
+          Created by: {this.state.currentUser.displayName}
+        </label>
         <textarea className="form-control form-control-sm" name="content" />
-        <button type="submit" className="btn btn-secondary">
+        <button type="submit" className="btn submit-btn btn-secondary">
           Save
         </button>
       </form>
@@ -75,8 +76,11 @@ export class InjectApp extends Component {
   }
   render() {
     return (
-      <div className="content-layer">
-        <button className="btn" onClick={this.openNoteForm}>
+      <div
+        id="content-layer"
+        className="d-flex flex-column justify-content-end align-items-end"
+      >
+        <button className="btn action-btn" onClick={this.openNoteForm}>
           Take note
         </button>
         {this.state.noteFormOpen && this.renderNoteForm()}

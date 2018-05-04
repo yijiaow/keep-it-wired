@@ -1,6 +1,6 @@
-.content-layer {
+#content-layer {
   position: fixed;
-  top: 50px;
+  top: 40px;
   right: 50px;
   z-index: 1000;
   background-color: transparent;
@@ -9,19 +9,48 @@
 form {
   width: 300px;
   height: 400px;
-  padding: 30px;
+  padding: 16px 20px;
   background-color: #00251a;
+  border-radius: 20px;
 }
 
-form > h5 {
-  color: white;
-}
-
-button {
-  margin: 10px;
+label {
+  color: lightgray;
 }
 
 textarea {
   height: 200px;
   resize: none;
+}
+
+textarea:focus,
+input:focus {
+  color: lightgray !important;
+}
+
+.form-control {
+  border: 1px solid #1de9b6;
+  border-radius: 20px;
+  color: lightgray;
+  background-color: transparent;
+}
+
+.form-control:focus {
+  background-color: transparent;
+  border: lightgray;
+}
+
+.btn {
+  border-radius: 20px;
+}
+
+.action-btn {
+  margin: 20px;
+  background-color: #1de9b6;
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.submit-btn {
+  margin: 10px;
 }
