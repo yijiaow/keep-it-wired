@@ -84,7 +84,6 @@ class App extends Component {
       this.setState({ loginStatus: INIT })
     }
   }
-
   handleLogout() {
     chrome.identity.getAuthToken({ interactive: false }, token => {
       if (chrome.runtime.lastError) {
@@ -128,7 +127,7 @@ class App extends Component {
               Log Out
             </button>
           </div>
-          <Feed />
+          <Feed currentUser={this.state.user} />
         </ErrorBoundary>
       )
     }

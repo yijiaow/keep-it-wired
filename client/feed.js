@@ -1,11 +1,12 @@
+/* global chrome */
+
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
-import { ErrorBoundary } from './error'
 
 export class Feed extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {}
+    this.openFeedStory = this.openFeedStory.bind(this)
     this.renderFeedStory = this.renderFeedStory.bind(this)
   }
   componentDidMount() {
@@ -20,11 +21,21 @@ export class Feed extends Component {
         this.setState({ channel: data.channel, feedStories: data.stories })
       })
   }
+  openFeedStory(event) {
+    const url = event.currentTarget.dataset.link
+    chrome.runtime.sendMessage({
+      from: 'popup_script',
+      action: 'createTab',
+      url: url,
+      currentUser: this.props.currentUser
+    })
+  }
   renderFeedStory(story, key) {
     return (
       <a
-        href={story.link}
         key={key}
+        data-link={story.link}
+        onClick={this.openFeedStory.bind(this)}
         className="list-group-item list-group-item-action flex-column align-items-start"
       >
         <div className="d-flex w-100 justify-content-between">
@@ -56,15 +67,3 @@ export class Feed extends Component {
     }
   }
 }
-
-const App = () => {
-  return (
-    <div>
-      <ErrorBoundary>
-        <Feed />
-      </ErrorBoundary>
-    </div>
-  )
-}
-
-ReactDOM.render(<App />, document.querySelector('#app'))
