@@ -9,10 +9,6 @@ body {
   background-color: #212121;
 }
 
-#app {
-  height: 100vh;
-}
-
 header {
   height: 50px;
   padding-left: 20px;
@@ -89,6 +85,11 @@ header > h4 {
   color: white;
   font-size: 1.2rem;
   margin-right: 0.4rem;
+}
+
+.nav-item {
+  width: 50%;
+  text-align: center;
 }
 
 .notes-view {

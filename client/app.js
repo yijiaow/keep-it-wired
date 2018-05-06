@@ -142,7 +142,7 @@ class App extends Component {
             <Notes currentUser={this.state.user} />
           )}
           <nav className="navbar fixed-bottom navbar-dark bg-dark">
-            <ul className="navbar-nav d-flex flex-row">
+            <ul className="navbar-nav d-flex flex-row w-100">
               <li id={2} className="nav-item" onClick={this.handleViewSwitch}>
                 Feed
               </li>
