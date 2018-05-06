@@ -81,6 +81,10 @@ header > h4 {
   margin: 0 15px;
 }
 
+.text-highlight {
+  color: #1de9b6;
+}
+
 .story-title {
   color: white;
   font-size: 1.2rem;
@@ -94,7 +98,8 @@ header > h4 {
 
 .card {
   width: 40vw;
-  height: 42vw;
+  height: 40vw;
+  margin: 2vw;
   border-radius: 16px;
   background-color: #003d33;
 }
@@ -103,6 +108,13 @@ header > h4 {
   background-color: #00695c;
 }
 
-.text-highlight {
-  color: #1de9b6;
+.card-body {
+  padding: 1rem;
+}
+
+.delete-btn {
+  width: 24px;
+  position: absolute;
+  bottom: 0.8rem;
+  right: 0.8rem;
 }

@@ -27,9 +27,11 @@ class Note extends PureComponent {
           <h5 className="card-title text-highlight">{this.props.note.title}</h5>
           <p className="card-text">{this.props.note.content}</p>
           {this.state.hovered && (
-            <button className="btn" onClick={this.handleDelete}>
-              Delete
-            </button>
+            <img
+              src="icons/rubbish-bin.svg"
+              className="delete-btn"
+              onClick={this.handleDelete}
+            />
           )}
         </div>
       </div>
@@ -73,7 +75,7 @@ export class Notes extends Component {
     if (this.state.error) throw new Error(this.state.error)
     else if (this.state.notes && this.state.notes.length > 0) {
       return (
-        <div className="notes-view d-flex flex-wrap justify-content-around align-content-between">
+        <div className="notes-view d-flex flex-wrap justify-content-center">
           {this.state.notes.map((note, index) => (
             <Note
               key={index}
