@@ -6,14 +6,13 @@ const TEST_URL = 'https://medium.freecodecamp.org/feed'
 
 module.exports = function feedRouter() {
   const router = new Router()
-  router.get('/', async (req, res) => {
+  router.get('/', async (req, res, next) => {
     try {
-      const feed = await parseXML(TEST_URL)
-      res.send(feed)
+      const { channel, stories } = await parseXML(TEST_URL)
+      res.status(200).json({ channel, stories })
     }
     catch (err) {
-      console.error(err)
-      res.status(500).json({ error: 'Internal Server Error' })
+      return next(err)
     }
   })
   return router

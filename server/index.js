@@ -21,3 +21,7 @@ app
   .use(bodyParser.json())
   .use('/feed', feedRouter())
   .use('/note', noteRouter())
+  .use((err, req, res, next) => {
+    console.error(err)
+    res.sendStatus(500)
+  })
