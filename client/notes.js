@@ -12,7 +12,7 @@ class Note extends PureComponent {
   }
   handleDelete(event) {
     const { id, index } = event.currentTarget.closest('.card').dataset
-    this.props.handleDeleteNote(id, index)
+    this.props.handleDeleteNote(id, parseInt(index))
   }
   render() {
     return (
