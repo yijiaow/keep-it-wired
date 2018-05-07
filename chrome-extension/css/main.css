@@ -42,7 +42,6 @@ header > h4 {
 
 .btn-inline {
   background-color: transparent;
-  color: #1de9b6;
   font-size: 1rem;
   font-weight: 400;
 }
@@ -78,8 +77,46 @@ header > h4 {
   margin: 0 15px;
 }
 
+.text-highlight {
+  color: #1de9b6;
+}
+
 .story-title {
   color: white;
   font-size: 1.2rem;
   margin-right: 0.4rem;
+}
+
+.nav-item {
+  width: 50%;
+  text-align: center;
+}
+
+.notes-view {
+  padding: 2vw 3vh;
+  height: 80%;
+}
+
+.card {
+  width: 40vw;
+  height: 40vw;
+  margin: 2vw;
+  border-radius: 16px;
+  background-color: #003d33;
+}
+
+.card:hover {
+  background-color: #00695c;
+}
+
+.card-body {
+  padding: 1rem;
+  overflow: scroll;
+}
+
+.delete-btn {
+  width: 24px;
+  position: absolute;
+  bottom: 0.8rem;
+  right: 0.8rem;
 }
