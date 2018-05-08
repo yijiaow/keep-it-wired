@@ -1,7 +1,7 @@
 /* global chrome */
 
 import React, { Component } from 'react'
-
+import fetchData from './fetchData'
 export class Feed extends Component {
   constructor(props) {
     super(props)
@@ -10,15 +10,13 @@ export class Feed extends Component {
     this.renderFeedStory = this.renderFeedStory.bind(this)
   }
   componentDidMount() {
-    fetch('http://127.0.0.1:3000/feed')
-      .then(res => {
-        if (res.status === 500) {
-          this.setState({ error: res.statusText })
-        }
-        return res.json()
-      })
+    fetchData
+      .getFeed()
       .then(data => {
         this.setState({ channel: data.channel, feedStories: data.stories })
+      })
+      .catch(err => {
+        this.setState({ error: err })
       })
   }
   openFeedStory(event) {

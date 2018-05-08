@@ -1,5 +1,5 @@
 import React, { Component, PureComponent } from 'react'
-
+import fetchData from './fetchData'
 class Note extends PureComponent {
   constructor(props) {
     super(props)
@@ -45,8 +45,8 @@ export class Notes extends Component {
     this.handleDeleteNote = this.handleDeleteNote.bind(this)
   }
   componentDidMount() {
-    fetch(`http://127.0.0.1:3000/note?user=${this.props.currentUser.userId}`)
-      .then(res => res.json())
+    fetchData
+      .getNotes(this.props.currentUser)
       .then(data => {
         this.setState({ notes: data })
       })
@@ -55,17 +55,16 @@ export class Notes extends Component {
       })
   }
   handleDeleteNote(id, index) {
-    fetch(`http://127.0.0.1:3000/note/delete/${id}`, {
-      method: 'DELETE'
-    })
-      .then(
+    fetchData
+      .deleteNote(id)
+      .then(() => {
         this.setState({
           notes: [
             ...this.state.notes.slice(0, index),
             ...this.state.notes.slice(index + 1)
           ]
         })
-      )
+      })
       .catch(err => {
         this.setState({ error: err })
       })
