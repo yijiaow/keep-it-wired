@@ -1,25 +1,22 @@
 /* global chrome */
 
 import React, { Component } from 'react'
-
+import fetchData from '../fetchData'
 export class Feed extends Component {
   constructor(props) {
     super(props)
     this.state = {}
     this.openFeedStory = this.openFeedStory.bind(this)
     this.renderFeedStory = this.renderFeedStory.bind(this)
+    this.handleError = this.handleError.bind(this)
   }
   componentDidMount() {
-    fetch('http://127.0.0.1:3000/feed')
-      .then(res => {
-        if (res.status === 500) {
-          this.setState({ error: res.statusText })
-        }
-        return res.json()
-      })
+    fetchData
+      .getFeed()
       .then(data => {
         this.setState({ channel: data.channel, feedStories: data.stories })
       })
+      .catch(this.handleError)
   }
   openFeedStory(event) {
     const url = event.currentTarget.dataset.link
@@ -46,11 +43,11 @@ export class Feed extends Component {
       </a>
     )
   }
+  handleError(error) {
+    throw Error(error)
+  }
   render() {
-    if (this.state.error) {
-      throw new Error(this.state.error)
-    }
-    else if (this.state.feedStories && this.state.feedStories.length > 0) {
+    if (this.state.feedStories && this.state.feedStories.length > 0) {
       return (
         <div>
           <header className="d-flex justify-content-start align-items-center">

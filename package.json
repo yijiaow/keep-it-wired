@@ -1,26 +1,27 @@
 {
   "name": "keep-it-wired",
   "version": "1.0.0",
-  "description":
-    "A Chrome extension for software developers to read and annotate technial articles",
+  "description": "A Chrome extension for software developers to read and annotate technial articles",
   "main": "server/index.js",
   "scripts": {
     "start": "node .",
-    "bundle":
-      "browserify -t babelify client/app.js -o chrome-extension/js/bundle.js",
-    "watch:client":
-      "watchify -vd -t babelify client/app.js -o chrome-extension/js/bundle.js",
-    "watch:content_script":
-      "watchify -vd -t babelify client/content_script.js -o chrome-extension/js/content_script_bundle.js",
+    "bundle": "browserify -t babelify client/components/app.js -o chrome-extension/js/bundle.js",
+    "watch:client": "watchify -vd -t babelify client/components/app.js -o chrome-extension/js/bundle.js",
+    "watch:content_script": "watchify -vd -t babelify client/content_script.js -o chrome-extension/js/content_script_bundle.js",
     "watch:server": "nodemon server/index.js",
     "watch": "npm-run-all --parallel watch:*",
     "lint": "run-p lint:*",
     "lint:html": "htmlhint ./**/*.html",
     "lint:css": "stylelint ./**/*css",
-    "lint:js": "eslint ./**/*.js"
+    "lint:js": "eslint ./**/*.js",
+    "test": "npm run lint",
+    "precommit": "npm test"
   },
   "nodemonConfig": {
-    "ignore": ["chrome-extension/js/bundle.js", "client/"]
+    "ignore": [
+      "chrome-extension/js/bundle.js",
+      "client/"
+    ]
   },
   "author": "Yijiao Wang",
   "license": "ISC",
@@ -29,7 +30,7 @@
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.2.1",
-    "mongodb": "^3.0.7",
+    "mongodb": "^3.0.8",
     "mongoose": "^5.0.16",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",

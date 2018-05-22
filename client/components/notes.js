@@ -1,11 +1,12 @@
 import React, { Component, PureComponent } from 'react'
-
+import fetchData from '../fetchData'
 class Note extends PureComponent {
   constructor(props) {
     super(props)
     this.state = { hovered: false }
     this.handleHover = this.handleHover.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
+    this.handleError = this.handleError.bind(this)
   }
   handleHover() {
     this.setState({ hovered: !this.state.hovered })
@@ -45,35 +46,31 @@ export class Notes extends Component {
     this.handleDeleteNote = this.handleDeleteNote.bind(this)
   }
   componentDidMount() {
-    fetch(`http://127.0.0.1:3000/note?user=${this.props.currentUser.userId}`)
-      .then(res => res.json())
+    fetchData
+      .getNotes(this.props.currentUser)
       .then(data => {
         this.setState({ notes: data })
       })
-      .catch(err => {
-        this.setState({ error: err })
-      })
+      .catch(this.handleError)
   }
   handleDeleteNote(id, index) {
-    fetch(`http://127.0.0.1:3000/note/delete/${id}`, {
-      method: 'DELETE'
-    })
-      .then(
+    fetchData
+      .deleteNote(id)
+      .then(() => {
         this.setState({
           notes: [
             ...this.state.notes.slice(0, index),
             ...this.state.notes.slice(index + 1)
           ]
         })
-      )
-      .catch(err => {
-        this.setState({ error: err })
       })
+      .catch(this.handleError)
   }
-
+  handleError(error) {
+    throw Error(error)
+  }
   render() {
-    if (this.state.error) throw new Error(this.state.error)
-    else if (this.state.notes && this.state.notes.length > 0) {
+    if (this.state.notes && this.state.notes.length > 0) {
       return (
         <div className="notes-view d-flex flex-wrap justify-content-center">
           {this.state.notes.map((note, index) => (
