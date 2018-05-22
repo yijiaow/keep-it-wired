@@ -40,7 +40,7 @@ class App extends Component {
     }, this.handleError)
   }
   handleViewSwitch(event) {
-    this.setState({ currentView: event.currentTarget.id })
+    this.setState({ currentView: parseInt(event.currentTarget.id) })
   }
   handleError(error) {
     this.setState({ loginStatus: INIT })
